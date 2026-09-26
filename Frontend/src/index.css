@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #0C0C0E;
+    color: #F2F2F4;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #D4F244;
+    color: #0C0C0E;
+  }
+
+  /* Hide default browser cursor on desktop / fine pointer devices */
+  @media (hover: hover) and (pointer: fine) {
+    *, *::before, *::after, body, a, button, input, textarea, select, [role="button"] {
+      cursor: none !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Glassmorphism utility */
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  /* Lime glow shadow */
+  .glow-lime {
+    box-shadow: 0 0 24px rgba(212, 242, 68, 0.25), 0 0 48px rgba(212, 242, 68, 0.10);
+  }
+
+  .glow-lime-sm {
+    box-shadow: 0 0 10px rgba(212, 242, 68, 0.20);
+  }
+
+  /* Text gradient */
+  .text-gradient-lime {
+    background: linear-gradient(135deg, #D4F244 0%, #a8c21e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Shimmer text */
+  .text-shimmer {
+    background: linear-gradient(
+      90deg,
+      #D4F244 0%,
+      #ffffff 30%,
+      #D4F244 60%,
+      #ffffff 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Noise texture overlay */
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Hero image blend mask */
+  .hero-img-mask {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 8%,
+      black 72%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to left,
+      transparent 0%,
+      black 12%,
+      black 100%
+    );
+    -webkit-mask-composite: destination-in;
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 8%,
+      black 72%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to left,
+      transparent 0%,
+      black 12%,
+      black 100%
+    );
+    mask-composite: intersect;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0C0C0E;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D4F244;
+    border-radius: 9999px;
+  }
+
+  /* Opacity 0 initial state for animated elements */
+  .opacity-0-init {
+    opacity: 0;
+  }
+}
